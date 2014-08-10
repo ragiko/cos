@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 # 2つのベクトルの類似度を返します
-# return -1 (180 deg) ~ 1 (0 deg)
+# 1に近づくほど類似度が高い
+# return 0 (90 deg) ~ 1 (0 deg)
 def calc_cosine_scale(vector1, vector2)
     
     # vector の正規化
@@ -49,6 +50,8 @@ end
 if $0 == __FILE__
 
   ### Example
+  
+  ### ベクトルが重なっている時
   v1 = {
     'music' => 1.0,
     'sports' => 2.0,
@@ -61,7 +64,22 @@ if $0 == __FILE__
     'cinema' => 3.0,
   }
 
-  puts "cos類似度: #{calc_cosine_scale(v1, v2)}"
+  puts "cos類似度: #{calc_cosine_scale(v1, v2)}" # return 1.0
+
+  ### ベクトルの次元の違い
+  v1 = {
+    'music' => 1.0,
+    'sports' => 2.0,
+  }
+
+  v2 = {
+    'music' => 1.0,
+    'sports' => 2.0,
+    'comic' => 3.0,
+  }
+
+  puts "cos類似度: #{calc_cosine_scale(v1, v2)}" # return 0.597
+
 end
 
 
